@@ -24,3 +24,24 @@
 .choice-text{
     padding: 1.5rem;
 }
+
+.correct{
+    background-color: green;
+}
+
+.incorrect{
+    background-color: red;
+}
+
+#hud{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.hud-prefix{
+text-align: center;
+font-size: 3rem;
+
+}
+
