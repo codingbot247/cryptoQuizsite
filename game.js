@@ -11,9 +11,9 @@ let availableQuestions = [];
 
 let questions = [
 
-   { 
+ { 
     
-    question: "x?",
+    question: "What are Smart wallets?",
     option1:"m",
     option2:"n",
     option3:"o",
@@ -21,7 +21,7 @@ let questions = [
     answer:1
 },
    {
-    question: "x?",
+    question: "What is the difference between a testnet and a mainnet ?",
     option1:"m",
     option2:"n",
     option3:"o",
@@ -32,7 +32,90 @@ let questions = [
 
    {
 
-    question: "x?",
+    question: "Which of the following are a testnet?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "How do you put a project on chain? ?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+,
+
+   {
+
+    question: "What are rollups?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "What is a chain fork?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "What does BIP stand for?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "How are onchain transactions different from offchain transactions?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "Which of the below is an off chain transaction?",
+    option1:"m",
+    option2:"n",
+    option3:"o",
+    option4:"p",
+    answer:1
+}
+
+,
+
+   {
+
+    question: "What is a block in a blockchain?",
     option1:"m",
     option2:"n",
     option3:"o",
