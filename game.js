@@ -1,4 +1,4 @@
-
+//selecting the question 
 const question = document.getElementById("question");
 //Take the choices and then convert them into an array to perform different actions on them
 const choices = Array.from(document.getElementsByClassName("choice-text"));
@@ -11,7 +11,7 @@ let availableQuestions = [];
 
 let questions = [
 
- { 
+   { 
     
     question: "What are Smart wallets?",
     option1:"m",
@@ -44,7 +44,7 @@ let questions = [
 
    {
 
-    question: "How do you put a project on chain? ?",
+    question: "How do you put a project on chain?",
     option1:"m",
     option2:"n",
     option3:"o",
@@ -126,7 +126,7 @@ let questions = [
 ];
 
 const correct_answer = 10;
-const max_questions = 3;
+const max_questions = 10;
 
  InitGame = () => {
 
@@ -138,6 +138,12 @@ const max_questions = 3;
 
 
  getNewQuestion = () => {
+
+    // just in case you have hardcoded more than 10 but you want the user to answer only 10
+
+    if (availableQuestions.length === 0 ||questionCounter >= max_questions){
+        return window.location.assign("/end.html");
+    }
 
     questionCounter++;
    const questionIndex= Math.floor(Math.random() * availableQuestions.length);
@@ -162,9 +168,25 @@ availableQuestions.splice(questionIndex, 1);
     acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
-    console.log(selectedAnswer);
-    getNewQuestion();
+
+    //To mark the answer as correct or incorrect 
+    
+    const classtoapply = selectedAnswer == currentquestion.answer ? 'correct': 'incorrect' 
+
+    selectedChoice.parentElement.classList.add(classtoapply);
+    setTimeout( ()=> {
+        selectedChoice.parentElement.classList.remove(classtoapply);
+        getNewQuestion();
+    }, 1000)
+   
+
+
    });
  });
 
+
+
+
  InitGame();
+
+ 
