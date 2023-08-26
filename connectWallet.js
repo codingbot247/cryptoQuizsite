@@ -1,13 +1,11 @@
-const provider = new ethers.providers.Web3Provider(window.ethereum, "goerli");
-    const quizsite = " ";
-    const quizsiteABI = [  ]
-    
-    let quizSite;
-    let signer;
-    provider.send("eth_requestAccounts", []).then(() => {
-    provider.listAccounts().then(function(accounts) {
-      signer = provider.getSigner(accounts[0]);
-      QuizContract = new ethers.Contract(QuizContractAddress, QuizContractABI, signer);
-    });
+async function connectWallet(){
+    if (typeof window.ethereum !== "undefined"){
+        await window.ethereum.request({method: "eth_requestAccounts"})
+        document.getElementbyId("connect").innerHTML = "Connected"
+    }
+    else{
+        document.getElementById("connect").innerHTML = "Please install a crypto wallet"
+    }
+}
 
-  });
+
