@@ -1,3 +1,4 @@
+function game(){
 //selecting the question 
 const question = document.getElementById("question");
 //Take the choices and then convert them into an array to perform different actions on them
@@ -130,22 +131,25 @@ const max_questions = 10;
 
  InitGame = () => {
 
-    questionCounter = 0;
+    questionCounter = 1; // To keep record of the number of questions
     score = 0;
-    availableQuestions = [...questions];
+    availableQuestions = [...questions]; // To keep track of the total number of available questions
     getNewQuestion();
 };
 
 
  getNewQuestion = () => {
 
+
     // just in case you have hardcoded more than 10 but you want the user to answer only 10
 
     if (availableQuestions.length === 0 ||questionCounter >= max_questions){
         return window.location.assign("/end.html");
     }
+// To update and show the current number of the question we will picking up the class 
+    document.querySelector(".hud-text").innerHTML = questionCounter++;
 
-    questionCounter++;
+
    const questionIndex= Math.floor(Math.random() * availableQuestions.length);
     currentquestion = availableQuestions[questionIndex];
     question.innerText = currentquestion.question; 
@@ -174,19 +178,29 @@ availableQuestions.splice(questionIndex, 1);
     const classtoapply = selectedAnswer == currentquestion.answer ? 'correct': 'incorrect' 
 
     selectedChoice.parentElement.classList.add(classtoapply);
+
+    //Updating the score 
+
+    if (selectedAnswer==currentquestion.answer){
+        score++;
+        document.querySelector("#score").innerHTML= score;
+    }
+    
     setTimeout( ()=> {
         selectedChoice.parentElement.classList.remove(classtoapply);
         getNewQuestion();
-    }, 1000)
+    }, 1000) 
    
-
 
    });
  });
 
 
-
-
  InitGame();
+}
+
+game();
+
+
 
  
