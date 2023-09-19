@@ -1,27 +1,25 @@
+  //For the below code to work, one must install node js and then store the keys in the .env folder 
 import { userAddress } from "./connectWallet.js";
-function claimNFT() {
-const contractAddress = " "; 
-const abi = [ ];
-const contract = new web3.eth.Contract(abi, contractAddress);
+const ethers = require('ethers');
+// we include the dotenv package to so that it can bring the keys from the .env folder 
+//env variables can be accessed in JS by process.env
+require("dotenv").config();
 
-const winnerAddress = "userAddress"; 
-const nftURI = "URI_Winner_NFT"; 
-
-// Calling the mint function to assign the NFT to the winner's address
-contract.methods.mint(winnerAddress, nftURI).send({ from: ownerAddress })
-  .on("transactionHash", function(hash) {
-    // Transaction submitted
-    console.log("Transaction hash:", hash);
-  })
-  .on("confirmation", function(confirmationNumber, receipt) {
-    // Transaction confirmed
-    console.log("Confirmation number:", confirmationNumber);
-    alert("NFT minted and assigned to the winner's address.");
-  })
-  .on("error", function(error) {
-    // Error occurred during transaction
-    console.error("Error:", error);
-    alert("An error occurred. Please try again later.");
-  });
+async function claimNFT() {
+  
+  //An RPC URL is the URL of an Ethereum node which is working as a provider for us in the code. 
+  const provider = new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC_URL);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  
+  const nftContractAddress = 'NFT_CONTRACT_ADDRESS';
+  const tokenId = 'TOKEN_ID';
+  const recipientAddress = 'userAddress';
+  
+  const nftContract = new ethers.Contract(nftContractAddress, ['function safeTransferFrom(address from, address to, uint256 tokenId)'], wallet);
+  
+  const tx = await nftContract.safeTransferFrom(wallet.address, userAddress, tokenId);
+  await tx.wait();
+  
+  console.log(`NFT transferred successfully to ${userAddress}`);
 
 }
